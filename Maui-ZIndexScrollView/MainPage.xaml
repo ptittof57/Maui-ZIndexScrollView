@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui_ZIndexScrollView.MainPage">
+
+    <Grid>
+        <!-- #region ZIndex 0  -->
+        <Grid ZIndex="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <ScrollView  x:Name="scrollView"
+                         VerticalOptions="StartAndExpand"
+                         HorizontalOptions="CenterAndExpand"
+                         VerticalScrollBarVisibility="Never">
+                <StackLayout BindableLayout.ItemsSource="{Binding Items}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Label Text="{Binding Text}" />
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+
+        <!--#endregion-->
+
+        <!--#region ZIndex 1  -->
+        <AbsoluteLayout ZIndex="1">
+            <Grid AbsoluteLayout.LayoutBounds="0.5,1,200,80"
+                  AbsoluteLayout.LayoutFlags="PositionProportional">
+                <Border Stroke="{StaticResource Primary}">
+                    <Grid BackgroundColor="{StaticResource Primary}">
+                        <Label Text="ZIndex 1 - List can't scroll" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </AbsoluteLayout>
+    </Grid>
+
+</ContentPage>
